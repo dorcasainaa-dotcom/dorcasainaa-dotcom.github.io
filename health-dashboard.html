@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wider Health Determinants Dashboard — Dorcas Aina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue:    #1558B0;
+    --blue-lt: #EBF2FB;
+    --blue-dk: #0D3D78;
+    --grey-100:#F7F7F6;
+    --grey-200:#EBEBEA;
+    --grey-400:#A3A39E;
+    --grey-700:#4A4A47;
+    --grey-900:#1A1A18;
+    --radius:  10px;
+    --shadow:  0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
+  }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: var(--grey-900); }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--grey-200);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .nav-brand { font-size: 15px; font-weight: 600; color: var(--grey-900); }
+  .nav-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; color: var(--blue); font-weight: 500;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+    padding: 3rem 2rem 2.5rem;
+    color: #fff;
+  }
+  .hero-inner { max-width: 960px; margin: 0 auto; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 100px;
+    font-size: 12px; padding: 3px 12px; margin-bottom: 1rem;
+  }
+  .hero h1 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; margin-bottom: .6rem; line-height: 1.3; }
+  .hero p  { font-size: 14px; opacity: .8; max-width: 600px; line-height: 1.65; margin-bottom: 1.5rem; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-tag2 {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 100px;
+    font-size: 12px; padding: 3px 11px; color: #fff;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+  .dashboard-frame {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    background: var(--grey-100);
+    margin-bottom: 2.5rem;
+  }
+  .dashboard-frame iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    display: block;
+  }
+  .frame-note {
+    background: var(--blue-lt);
+    border-left: 3px solid var(--blue);
+    padding: .75rem 1rem;
+    font-size: 13px;
+    color: var(--blue-dk);
+    margin-bottom: 2rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    line-height: 1.6;
+  }
+
+  .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
+  @media(max-width:600px){ .details-grid { grid-template-columns: 1fr; } }
+  .detail-card {
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    border-left: 3px solid var(--blue);
+  }
+  .detail-label { font-size: 11px; color: var(--grey-400); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 5px; }
+  .detail-value { font-size: 13px; color: var(--grey-700); line-height: 1.55; }
+
+  h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: var(--grey-900); }
+  .findings-list { list-style: none; display: grid; gap: .75rem; margin-bottom: 2.5rem; }
+  .findings-list li {
+    background: #fff;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    font-size: 14px; color: var(--grey-700); line-height: 1.65;
+    padding-left: 2.5rem;
+    position: relative;
+  }
+  .findings-list li::before {
+    content: "●";
+    position: absolute; left: 1rem; top: 1rem;
+    color: var(--blue); font-size: 10px;
+  }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 2.5rem; }
+  .tag {
+    font-size: 12px; padding: 4px 11px; border-radius: 100px;
+    background: var(--blue-lt); color: var(--blue-dk); font-weight: 500;
+  }
+
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 500; color: var(--blue);
+    padding: 9px 20px; border: 1.5px solid var(--blue);
+    border-radius: var(--radius); transition: background .15s;
+  }
+  .back-btn:hover { background: var(--blue-lt); text-decoration: none; }
+
+  footer {
+    border-top: 1px solid var(--grey-200);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 13px; color: var(--grey-400);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Dorcas Aina</span>
+  <a href="index.html" class="nav-back">← Back to portfolio</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Power BI · Microsoft Fabric · Public Health</span>
+    <h1>Wider Health Determinants Dashboard<br>Southampton &amp; Statistical Neighbours</h1>
+    <p>Multi-page interactive dashboard analysing air pollution and child poverty indicators across Southampton and three statistical neighbours (Portsmouth, Bristol, Plymouth) covering 2014–2023. Built on OHID public health data with custom DAX measures, England average benchmarks, and a bespoke background UI.</p>
+    <div class="hero-tags">
+      <span class="hero-tag2">Power BI</span>
+      <span class="hero-tag2">DAX</span>
+      <span class="hero-tag2">Microsoft Fabric</span>
+      <span class="hero-tag2">OHID data</span>
+      <span class="hero-tag2">Performance reporting</span>
+      <span class="hero-tag2">Public health analytics</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="frame-note">
+    The dashboard below is fully interactive — use the navigation buttons on the left to switch between the three pages, and the year slicer to filter by period. Best viewed on a desktop screen.
+  </div>
+
+  <div class="dashboard-frame">
+    <iframe
+      title="Wider Health Determinants Dashboard — Dorcas Aina"
+      src="https://app.powerbi.com/reportEmbed?reportId=ba4bc8b7-3b5b-428e-a958-1900958df8ec&autoAuth=true"
+      allowFullScreen="true">
+    </iframe>
+  </div>
+
+  <h2>Project details</h2>
+  <div class="details-grid">
+    <div class="detail-card">
+      <div class="detail-label">Dataset</div>
+      <div class="detail-value">OHID Wider Health Determinants — air pollution (PM2.5, ID 93867) and child poverty (absolute and relative, IDs 93701/93700)</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-label">Period covered</div>
+      <div class="detail-value">2014–2023 (trend analysis) · 2018–2023 (air pollution) · 2022 (latest KPI year)</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-label">Geographies</div>
+      <div class="detail-value">Southampton and statistical neighbours: Portsmouth, Bristol, Plymouth — selected by OHID comparator methodology</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-label">Data model</div>
+      <div class="detail-value">Star schema — Wider_health_determinant_FactTable linked to Area_dimTable, Indicators_dimTable, and Calendar via defined relationships</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-label">DAX measures built</div>
+      <div class="detail-value">8 custom measures: Prior Year values, YoY change labels, RAG status indicators, rank by area, max/min by year for shaded band</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-label">Pages</div>
+      <div class="detail-value">3 pages — Insight Summary (written findings + scatter chart), Overview (KPI cards + trend charts), Indicators Comparisons (matrix + benchmarks)</div>
+    </div>
+  </div>
+
+  <h2>Key findings</h2>
+  <ul class="findings-list">
+    <li>Air quality has improved across all four statistical neighbours since 2018. Portsmouth remains the worst performer, sitting above the England average (50th percentile) throughout the period. Plymouth consistently performs best.</li>
+    <li>Southampton's air pollution percentile score of 52 in 2022 places it above the England average, indicating worse-than-average air quality relative to all local authorities in England.</li>
+    <li>Child poverty rates have risen across all four cities since 2019, reversing the improving trend seen between 2014 and 2018. Southampton (18.1%) and Portsmouth (20.8%) both exceed the England average of 17%.</li>
+    <li>A correlation scatter chart confirms a positive relationship between air pollution and child poverty across the peer group — areas with worse air quality also tend to have higher child poverty rates, suggesting the two determinants reinforce each other geographically.</li>
+  </ul>
+
+  <h2>Tools and techniques</h2>
+  <div class="tag-row">
+    <span class="tag">Power BI Service</span>
+    <span class="tag">Microsoft Fabric</span>
+    <span class="tag">DAX</span>
+    <span class="tag">Star schema data model</span>
+    <span class="tag">Custom DAX measures</span>
+    <span class="tag">Conditional formatting</span>
+    <span class="tag">England average reference lines</span>
+    <span class="tag">Trend line analysis</span>
+    <span class="tag">Correlation scatter chart</span>
+    <span class="tag">Custom background UI (Python/Pillow)</span>
+    <span class="tag">OHID public health data</span>
+    <span class="tag">RAG status indicators</span>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to portfolio</a>
+
+</div>
+
+<footer>
+  <p>Dorcas Aina &copy; 2026 · Hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
