@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wandsworth Performance Dashboard - Dorcas Aina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1558B0;--blue-lt:#EBF2FB;--blue-dk:#0D3D78;--grey-100:#F7F7F6;--grey-200:#EBEBEA;--grey-400:#A3A39E;--grey-700:#4A4A47;--grey-900:#1A1A18;--teal:#006B75;--teal-lt:#E6F4F5;--green:#15803D;--green-lt:#F0FDF4;--amber:#E8A838;--amber-lt:#FEF3D7;--red:#C0392B;--radius:10px;--shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.05)}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:var(--grey-900);line-height:1.7}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--grey-200);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-brand{font-size:15px;font-weight:600;color:var(--grey-900)}
+.nav-back{font-size:14px;color:var(--blue);font-weight:500}
+.hero{background:linear-gradient(135deg,var(--teal) 0%,var(--blue-dk) 100%);padding:3.5rem 2rem 3rem;color:#fff}
+.hero-inner{max-width:960px;margin:0 auto}
+.hero-eyebrow{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:100px;font-size:12px;padding:3px 12px;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:600;margin-bottom:.6rem;line-height:1.3}
+.hero-sub{font-size:14px;opacity:.8;max-width:640px;line-height:1.65;margin-bottom:1.75rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:2rem}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:var(--radius);font-size:14px;font-weight:500;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.btn-white{background:#fff;color:var(--teal)}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.hero-tags{display:flex;flex-wrap:wrap;gap:7px}
+.hero-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:12px;padding:3px 11px;color:#fff}
+.container{max-width:960px;margin:0 auto;padding:3rem 2rem}
+.note{background:var(--teal-lt);border-left:3px solid var(--teal);padding:.75rem 1rem;font-size:13px;color:#005660;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:2rem;line-height:1.6}
+.pipeline-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:2.5rem;border-radius:var(--radius);overflow:hidden;border:1px solid var(--grey-200)}
+.pipeline-step{background:var(--grey-100);padding:1rem;text-align:center;position:relative}
+.pipeline-step:not(:last-child)::after{content:">";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--teal);font-weight:700;z-index:1;font-size:18px}
+.pipeline-step strong{display:block;font-size:12px;color:var(--teal);margin-bottom:.3rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.pipeline-step span{font-size:12px;color:var(--grey-700);line-height:1.5}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+.stat-card{background:var(--grey-100);border-radius:var(--radius);padding:1.1rem 1.25rem;text-align:center;border-top:3px solid var(--teal)}
+.stat-num{font-size:1.4rem;font-weight:600;color:var(--blue-dk);display:block;margin-bottom:.2rem}
+.stat-label{font-size:12px;color:var(--grey-400)}
+.pages-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+.page-card{border-radius:var(--radius);border:1px solid var(--grey-200);overflow:hidden;box-shadow:var(--shadow)}
+.page-card-header{padding:.7rem 1rem;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.page-card-body{background:#fff;padding:1rem;font-size:13px;color:var(--grey-700);line-height:1.6}
+.page-card-body ul{list-style:none;display:grid;gap:.3rem}
+.page-card-body ul li{padding-left:1.1rem;position:relative}
+.page-card-body ul li::before{content:"→";position:absolute;left:0;color:var(--teal);font-size:11px;top:2px}
+.dax-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2.5rem}
+.dax-card{background:var(--grey-100);border-radius:var(--radius);padding:.9rem 1rem;border-left:3px solid var(--blue)}
+.dax-name{font-size:12px;font-weight:600;color:var(--blue-dk);font-family:monospace;margin-bottom:.3rem}
+.dax-desc{font-size:12px;color:var(--grey-700)}
+.findings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+.finding-card{border-radius:var(--radius);padding:1.1rem 1.25rem;border:1px solid var(--grey-200);font-size:13px;color:var(--grey-700);line-height:1.6}
+.finding-card strong{display:block;font-size:13px;margin-bottom:.35rem}
+h2{font-size:1.2rem;font-weight:600;margin-bottom:1rem;color:var(--grey-900)}
+.tag-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:2.5rem}
+.tag{font-size:12px;padding:4px 11px;border-radius:100px;background:var(--blue-lt);color:var(--blue-dk);font-weight:500}
+.tag-teal{background:var(--teal-lt);color:var(--teal)}
+.tag-green{background:var(--green-lt);color:var(--green)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--blue);padding:9px 20px;border:1.5px solid var(--blue);border-radius:var(--radius);transition:background .15s}
+.back-btn:hover{background:var(--blue-lt);text-decoration:none}
+footer{border-top:1px solid var(--grey-200);padding:1.5rem 2rem;text-align:center;font-size:13px;color:var(--grey-400)}
+@media(max-width:640px){.pages-grid,.dax-grid,.findings-grid,.stats-row{grid-template-columns:1fr}.pipeline-row{grid-template-columns:1fr 1fr}.pipeline-step::after{display:none}.hero{padding:2.5rem 1.25rem 2rem}.container{padding:2rem 1.25rem}}
+</style>
+</head>
+<body>
+<nav>
+  <span class="nav-brand">Dorcas Aina</span>
+  <a href="index.html" class="nav-back">Back to portfolio</a>
+</nav>
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Microsoft Fabric · Power BI · Local Government Finance</span>
+    <h1>Wandsworth LBC Performance Dashboard<br>Revenue Service Expenditure 2021-22 to 2024-25</h1>
+    <p class="hero-sub">End-to-end Microsoft Fabric analytics pipeline built on publicly available DLUHC Revenue Outturn RS data for Wandsworth London Borough Council. Four-page Power BI report covering executive KPI overview, service variance analysis, and four-year trend analysis, delivered through a full medallion architecture: Lakehouse, notebook-based ETL, star schema semantic model, and a formatted report with navigation.</p>
+    <div class="hero-cta">
+      <a href="https://app.fabric.microsoft.com/reportEmbed?reportId=9159bc96-82e4-4c61-bf52-2c840cc7437d&autoAuth=true&ctid=fe430368-83c3-48a9-bfbb-1d84a02e7bea" target="_blank" class="btn btn-white">View in Fabric (login required)</a>
+      <a href="Wandsworth Performance - Dashboard.pdf" class="btn btn-outline" download>Download PDF</a>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">Microsoft Fabric</span>
+      <span class="hero-tag">Power BI</span>
+      <span class="hero-tag">DAX</span>
+      <span class="hero-tag">PySpark</span>
+      <span class="hero-tag">Delta tables</span>
+      <span class="hero-tag">Star schema</span>
+      <span class="hero-tag">DLUHC open data</span>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="note">The interactive version requires a Microsoft account. A full PDF covering all four pages is available to download above. All source data is publicly available from DLUHC on gov.uk.</div>
+  <h2>Pipeline architecture</h2>
+  <div class="pipeline-row">
+    <div class="pipeline-step"><strong>Lakehouse</strong><span>Four DLUHC RS Excel files loaded into WandsworthLakehouse via Fabric Files</span></div>
+    <div class="pipeline-step"><strong>Notebook</strong><span>PySpark notebook extracts Wandsworth data and writes four Delta tables</span></div>
+    <div class="pipeline-step"><strong>Semantic Model</strong><span>Star schema with three relationships and eleven DAX measures including CAGR</span></div>
+    <div class="pipeline-step"><strong>Power BI Report</strong><span>Four-page report with navigation buttons, slicers and conditional formatting</span></div>
+  </div>
+  <h2>Key figures</h2>
+  <div class="stats-row">
+    <div class="stat-card"><span class="stat-num">£531M</span><span class="stat-label">Total net expenditure 2024-25 (single year)</span></div>
+    <div class="stat-card"><span class="stat-num">+36.1%</span><span class="stat-label">Four-year expenditure growth</span></div>
+    <div class="stat-card"><span class="stat-num">10.8%</span><span class="stat-label">Four-year CAGR</span></div>
+    <div class="stat-card"><span class="stat-num">83%</span><span class="stat-label">People Services share of spend</span></div>
+  </div>
+  <h2>Report pages</h2>
+  <div class="pages-grid">
+    <div class="page-card">
+      <div class="page-card-header" style="background:#006B75">Summary page</div>
+      <div class="page-card-body"><ul>
+        <li>KPI cards: total expenditure, four-year change, CAGR, People Services total</li>
+        <li>Donut chart showing People vs Place vs Corporate split for 2024-25</li>
+        <li>Written narrative explaining scope and how to navigate the report</li>
+        <li>Navigation buttons linking to all three analytical pages</li>
+      </ul></div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-header" style="background:#1558B0">Executive KPI Overview</div>
+      <div class="page-card-body"><ul>
+        <li>Four KPI cards with pound formatting and RAG colouring on YoY change</li>
+        <li>Horizontal bar chart showing net expenditure ranked by service area</li>
+        <li>Donut chart showing People vs Place Services split</li>
+        <li>Financial year slicer and Directorate slicer for cross-filtering</li>
+      </ul></div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-header" style="background:#0D3D78">Service Variance</div>
+      <div class="page-card-body"><ul>
+        <li>Matrix with conditional formatting: nine service areas across four years</li>
+        <li>Clustered column chart showing People vs Place vs Corporate by year</li>
+        <li>Four-year growth ranked bar chart showing top five growing services</li>
+        <li>Category and Directorate slicers for filtering the matrix</li>
+      </ul></div>
+    </div>
+    <div class="page-card">
+      <div class="page-card-header" style="background:#E8A838">Trend Analysis</div>
+      <div class="page-card-body"><ul>
+        <li>Area chart showing four-year expenditure trajectory by service area</li>
+        <li>YoY change bar chart ranked by service area with year slicer</li>
+        <li>Service area as percentage of total expenditure bar chart</li>
+        <li>Year slicer activating the YoY measures for the selected period</li>
+      </ul></div>
+    </div>
+  </div>
+  <h2>DAX measures built</h2>
+  <div class="dax-grid">
+    <div class="dax-card"><div class="dax-name">Total Expenditure</div><div class="dax-desc">Sum of Expenditure_GBP000. Base measure used across all pages and visuals.</div></div>
+    <div class="dax-card"><div class="dax-name">Prior Year Expenditure</div><div class="dax-desc">Calculates expenditure for the prior year using Sort_Order context from Dim_Date.</div></div>
+    <div class="dax-card"><div class="dax-name">YoY Change GBP000</div><div class="dax-desc">Returns blank when multiple years are selected to prevent misleading aggregation.</div></div>
+    <div class="dax-card"><div class="dax-name">YoY Change Pct</div><div class="dax-desc">Year-on-year percentage change. Returns blank unless exactly one year is selected.</div></div>
+    <div class="dax-card"><div class="dax-name">People Services Total</div><div class="dax-desc">CALCULATE filtering Dim_Service category to People Services only.</div></div>
+    <div class="dax-card"><div class="dax-name">Place Services Total</div><div class="dax-desc">CALCULATE filtering Dim_Service category to Place Services only.</div></div>
+    <div class="dax-card"><div class="dax-name">Four Year CAGR</div><div class="dax-desc">Compound Annual Growth Rate using POWER(end/start, 1/3) minus 1. Formatted as percentage.</div></div>
+    <div class="dax-card"><div class="dax-name">Pct of Total</div><div class="dax-desc">Each service as a share of total net expenditure using DIVIDE with ALL() to remove filter context.</div></div>
+  </div>
+  <h2>Key findings</h2>
+  <div class="findings-grid">
+    <div class="finding-card" style="border-left:3px solid #C0392B"><strong style="color:#C0392B">Adult Social Care: primary cost pressure</strong>Expenditure rose from £95m to £132m over four years (+38.3%), driven by demographic demand growth and sustained National Living Wage increases on provider costs. Now the single largest service after Education.</div>
+    <div class="finding-card" style="border-left:3px solid var(--amber)"><strong style="color:var(--amber)">Housing: sharpest proportional rise</strong>Expenditure increased from £14.1M to £40.7M, a rise of 187% over four years, reflecting significant temporary accommodation cost pressures on the General Fund.</div>
+    <div class="finding-card" style="border-left:3px solid var(--blue)"><strong style="color:var(--blue)">People Services: 83% of total spend</strong>Education, Adult Social Care and Children Social Care together account for 83% of total net service expenditure in 2024-25. All three are demand-led statutory services with limited scope for reduction.</div>
+    <div class="finding-card" style="border-left:3px solid var(--green)"><strong style="color:var(--green)">Highways and Transport: net income position</strong>Negative in all four years, reflecting TfL LIP grant income and parking revenues exceeding gross highway expenditure. This is normal for London Boroughs and reduces overall net spend.</div>
+  </div>
+  <h2>Tools and techniques</h2>
+  <div class="tag-row">
+    <span class="tag">Microsoft Fabric</span>
+    <span class="tag">Lakehouse</span>
+    <span class="tag">Delta tables</span>
+    <span class="tag">PySpark notebook</span>
+    <span class="tag tag-teal">Power BI Service</span>
+    <span class="tag tag-teal">DAX</span>
+    <span class="tag tag-teal">Star schema</span>
+    <span class="tag tag-teal">Semantic model</span>
+    <span class="tag tag-green">DLUHC RS Revenue Outturn</span>
+    <span class="tag tag-green">Local government finance</span>
+    <span class="tag tag-green">Conditional formatting</span>
+    <span class="tag">CAGR analysis</span>
+    <span class="tag">YoY variance</span>
+  </div>
+  <a href="index.html" class="back-btn">Back to portfolio</a>
+</div>
+<footer><p>Dorcas Aina &copy; 2026 · Hosted on GitHub Pages</p></footer>
+</body>
+</html>
