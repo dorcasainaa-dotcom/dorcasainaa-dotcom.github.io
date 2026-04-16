@@ -88,6 +88,12 @@
     border-radius: 100px;
     font-size: 12.5px; padding: 4px 13px; color: #fff;
   }
+  .hero-badge-iso {
+    background: rgba(255,215,0,.2);
+    border: 1px solid rgba(255,215,0,.5);
+    color: #fff;
+    font-weight: 600;
+  }
   .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 6px;
@@ -177,6 +183,57 @@
     pointer-events: none; cursor: default;
   }
 
+
+  /* ── CONSULTANCY ─────────────────────────────────────────── */
+  .consultancy-intro {
+    font-size: 15px; color: var(--grey-700); line-height: 1.75;
+    max-width: 680px; margin-bottom: 2.5rem;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; margin-bottom: 2.5rem;
+  }
+  @media(max-width:640px){ .services-grid { grid-template-columns: 1fr; } }
+  .service-card {
+    background: var(--grey-100); border-radius: var(--radius-lg);
+    padding: 1.5rem; border-top: 3px solid var(--blue);
+  }
+  .service-card h4 {
+    font-size: 15px; font-weight: 600; margin-bottom: .5rem;
+    color: var(--blue-dk);
+  }
+  .service-card p {
+    font-size: 13.5px; color: var(--grey-700); line-height: 1.65;
+  }
+  .service-card.teal { border-top-color: var(--teal); }
+  .service-card.teal h4 { color: var(--teal); }
+  .service-card.amber { border-top-color: #92500A; }
+  .service-card.amber h4 { color: #92500A; }
+  .how-i-work {
+    background: var(--blue-lt); border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem; margin-bottom: 2rem;
+  }
+  .how-i-work h4 {
+    font-size: 14px; font-weight: 600; color: var(--blue-dk);
+    margin-bottom: .75rem;
+  }
+  .how-i-work p {
+    font-size: 14px; color: var(--grey-700); line-height: 1.7;
+  }
+  .cta-box {
+    display: flex; align-items: center; gap: 1.5rem;
+    background: var(--blue-dk); border-radius: var(--radius-lg);
+    padding: 1.5rem 2rem; flex-wrap: wrap;
+  }
+  .cta-box p { color: rgba(255,255,255,.9); font-size: 14px; flex: 1; }
+  .cta-box a {
+    background: #fff; color: var(--blue-dk);
+    padding: 9px 22px; border-radius: var(--radius);
+    font-size: 14px; font-weight: 600; white-space: nowrap;
+    transition: transform .15s;
+  }
+  .cta-box a:hover { transform: translateY(-1px); text-decoration: none; }
+
   /* ── CERTS ──────────────────────────────────────────────── */
   .certs-grid {
     display: grid;
@@ -262,21 +319,23 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li class="hide-mobile"><a href="#skills">Skills</a></li>
+    <li><a href="#consultancy">Work with me</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-eyebrow">Open to new opportunities</div>
+  <div class="hero-eyebrow">Open to senior analyst roles and consultancy engagements</div>
   <h1>Dorcas Aina</h1>
-  <p class="hero-sub">Data &amp; Information Analyst specialising in performance intelligence, business intelligence, and data governance in local government and public sector environments.</p>
+  <p class="hero-sub">Data and Information Analyst specialising in performance intelligence, business intelligence, and data governance for local government and public sector organisations. Available for permanent roles and project-based consultancy.</p>
   <div class="hero-badges">
     <span class="hero-badge">Power BI &amp; Microsoft Fabric</span>
     <span class="hero-badge">Python &amp; NLP</span>
     <span class="hero-badge">SQL &amp; ETL</span>
-    <span class="hero-badge">ISO/IEC 27001 Lead Auditor</span>
+    <span class="hero-badge hero-badge-iso">ISO/IEC 27001 Lead Auditor</span>
     <span class="hero-badge">PRINCE2 Foundation</span>
+    <span class="hero-badge hero-badge-iso">ISO/IEC 42001 AI Lead Auditor</span>
   </div>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-white">View my work</a>
@@ -500,6 +559,7 @@
       <div>
         <div class="skill-group-label">Business Intelligence &amp; Visualisation</div>
         <div class="skill-tags">
+          <span class="skill-tag">Advanced Excel</span>
           <span class="skill-tag">Power BI</span>
           <span class="skill-tag">DAX</span>
           <span class="skill-tag">Power Query</span>
@@ -527,6 +587,7 @@
         <div class="skill-tags">
           <span class="skill-tag">Advanced Excel</span>
           <span class="skill-tag">INDEX/MATCH</span>
+          <span class="skill-tag">VLOOKUP/XLOOKUP</span>
           <span class="skill-tag">OFFSET</span>
           <span class="skill-tag">Pivot tables</span>
           <span class="skill-tag">Data modelling</span>
@@ -548,12 +609,48 @@
   </div>
 </section>
 
+<!-- CONSULTANCY -->
+<section id="consultancy">
+  <div class="container">
+    <div class="section-label">Consultancy</div>
+    <h2 class="section-title">Work with me</h2>
+
+    <p class="consultancy-intro">Alongside my career in permanent roles, I take on project-based analytics and governance work for public sector organisations, charities, and mission-driven teams. If you need structured analytical thinking, clear reporting, or governance expertise for a fixed-term piece of work, I am available to discuss engagements.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h4>Performance Analytics</h4>
+        <p>Build or improve management information reporting. Power BI dashboards, Excel MI reports, KPI frameworks, and performance commentary for senior leadership teams and boards.</p>
+      </div>
+      <div class="service-card teal">
+        <h4>Data Governance and Audit</h4>
+        <p>ISO/IEC 27001 and 42001 Lead Auditor. Independent data quality reviews, governance gap assessments, GDPR compliance support, and data protection impact analysis for public sector and charity clients.</p>
+      </div>
+      <div class="service-card amber">
+        <h4>Analytics Infrastructure</h4>
+        <p>End-to-end analytics pipeline design using Microsoft Fabric, Power BI, SQL, and Python. Lakehouse architecture, ETL automation, and semantic model design for organisations moving beyond spreadsheets.</p>
+      </div>
+    </div>
+
+    <div class="how-i-work">
+      <h4>How I work</h4>
+      <p>I work remotely or hybrid, typically on fixed-scope engagements of four to twelve weeks. I start by understanding what decisions the work needs to support, then design the analysis or infrastructure around that outcome rather than the other way round. Deliverables are documented and handover-ready so your team can maintain and extend the work after the engagement ends.</p>
+    </div>
+
+    <div class="cta-box">
+      <p>Available for project-based engagements. Bedford-based, open to remote and hybrid work across the UK.</p>
+      <a href="mailto:dorcas.ainaa@gmail.com">Get in touch</a>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="contact-box">
       <h3>Get in touch</h3>
-      <p>Open to data analytics, business intelligence, people analytics, and public sector roles.<br>Based in Bedford: open to hybrid and remote.</p>
+      <p>Open to permanent analyst roles and project-based consultancy engagements.<br>Bedford-based, available for hybrid and remote work across the UK.</p>
       <div class="contact-links">
         <a class="contact-link" href="mailto:dorcas.ainaa@gmail.com">✉ dorcas.ainaa@gmail.com</a>
         <a class="contact-link" href="https://www.linkedin.com/in/dorcas-aina/" target="_blank">LinkedIn</a>
