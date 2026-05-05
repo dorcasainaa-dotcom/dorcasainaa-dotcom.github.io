@@ -1,672 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EDI Workforce Analytics Dashboard - Dorcas Aina</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDI Workforce Analytics Dashboard - Dorcas Aina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --black: #0f0f0f;
-      --dark: #1a1a2e;
-      --mid: #4a5568;
-      --light: #718096;
-      --border: #e2e8f0;
-      --bg: #fafafa;
-      --white: #ffffff;
-      --accent: #002147;
-      --teal: #1d9e75;
-      --red: #e24b4a;
-      --amber: #ef9f27;
-      --blue: #1a6bb5;
-    }
+  :root {
+    --blue:      #1558B0;
+    --blue-lt:   #EBF2FB;
+    --blue-dk:   #0D3D78;
+    --grey-100:  #F7F7F6;
+    --grey-200:  #EBEBEA;
+    --grey-400:  #A3A39E;
+    --grey-700:  #4A4A47;
+    --grey-900:  #1A1A18;
+    --purple:    #5C2D91;
+    --purple-lt: #F0EBF8;
+    --teal:      #006B75;
+    --teal-lt:   #E6F4F5;
+    --amber:     #92500A;
+    --amber-lt:  #FEF3E2;
+    --red:       #9B1C1C;
+    --red-lt:    #FEF2F2;
+    --radius:    10px;
+    --radius-lg: 16px;
+    --shadow:    0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
+  }
 
-    body {
-      font-family: 'Georgia', 'Times New Roman', serif;
-      background: var(--bg);
-      color: var(--black);
-      font-size: 17px;
-      line-height: 1.75;
-    }
+  html { scroll-behavior: smooth; }
 
-    /* ---- NAV ---- */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.25rem 2rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav .name {
-      font-family: 'Georgia', serif;
-      font-size: 1rem;
-      font-weight: normal;
-      color: var(--black);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-    }
-    nav .back {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.85rem;
-      color: var(--mid);
-      text-decoration: none;
-    }
-    nav .back:hover { color: var(--black); }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--grey-900);
+    background: #fff;
+  }
 
-    /* ---- HERO ---- */
-    .hero {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 4rem 2rem 2.5rem;
-    }
-    .category-tags {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.82rem;
-      color: var(--mid);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-    .category-tags span { margin: 0 0.35rem; color: var(--border); }
-    h1 {
-      font-size: 2.1rem;
-      font-weight: normal;
-      line-height: 1.25;
-      color: var(--black);
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.01em;
-    }
-    .intro {
-      font-size: 1.05rem;
-      color: var(--mid);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-    .cta-row {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.75rem;
-    }
-    .btn {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.85rem;
-      padding: 0.55rem 1.25rem;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: opacity 0.15s;
-    }
-    .btn:hover { opacity: 0.8; }
-    .btn-primary { background: var(--accent); color: var(--white); }
-    .btn-secondary { background: var(--white); color: var(--accent); border: 1px solid var(--accent); }
-    .tag-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .tag {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.78rem;
-      padding: 0.25rem 0.75rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      color: var(--mid);
-    }
-    .note {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.85rem;
-      color: var(--light);
-      font-style: italic;
-      margin-bottom: 0.5rem;
-    }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
-    /* ---- CONTENT ---- */
-    .content {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 0 2rem 5rem;
-    }
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 3rem 0 2.5rem;
-    }
-    h2 {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--light);
-      margin-bottom: 1.5rem;
-    }
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--grey-200);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .nav-brand { font-size: 15px; font-weight: 600; color: var(--grey-900); text-decoration: none; }
+  .nav-back  { font-size: 14px; font-weight: 500; color: var(--grey-700); }
+  .nav-back:hover { color: var(--blue); text-decoration: none; }
 
-    /* ---- PIPELINE GRID ---- */
-    .pipeline-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .pipeline-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.1rem 1.2rem;
-    }
-    .pipeline-card .step-label {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--blue);
-      margin-bottom: 0.4rem;
-    }
-    .pipeline-card .step-title {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 0.3rem;
-    }
-    .pipeline-card p {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.82rem;
-      color: var(--mid);
-      line-height: 1.55;
-    }
+  /* HERO */
+  .page-hero {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+    padding: 4rem 2rem 3.5rem;
+    color: #fff;
+  }
+  .hero-inner { max-width: 820px; margin: 0 auto; }
+  .category-line {
+    font-size: 13px; font-weight: 500; opacity: .75;
+    letter-spacing: .03em; margin-bottom: 1rem;
+  }
+  .page-hero h1 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 600; line-height: 1.25;
+    margin-bottom: 1.25rem;
+  }
+  .page-hero .intro {
+    font-size: 15px; opacity: .88; line-height: 1.7;
+    max-width: 700px; margin-bottom: 2rem;
+  }
+  .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 20px; border-radius: var(--radius);
+    font-size: 13.5px; font-weight: 500; cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.15); text-decoration: none; }
+  .btn-white   { background: #fff; color: var(--blue); }
+  .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
 
-    /* ---- KEY FIGURES ---- */
-    .figures-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .figure-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.1rem 1.2rem;
-    }
-    .figure-card .fig-val {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1.1;
-      margin-bottom: 0.3rem;
-    }
-    .figure-card .fig-val.red { color: var(--red); }
-    .figure-card .fig-val.amber { color: var(--amber); }
-    .figure-card .fig-val.teal { color: var(--teal); }
-    .figure-card .fig-label {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem;
-      color: var(--mid);
-      line-height: 1.4;
-    }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+  .tag { font-size: 11.5px; padding: 3px 9px; border-radius: 100px; font-weight: 500; }
+  .tag-blue   { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+  .tag-teal   { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.2); }
+  .tag-amber  { background: rgba(255,255,255,.10); color: #fff; border: 1px solid rgba(255,255,255,.18); }
 
-    /* ---- PAGES TABLE ---- */
-    .pages-list { list-style: none; }
-    .pages-list li {
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-    .pages-list li:last-child { border-bottom: none; }
-    .page-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 0.3rem;
-    }
-    .page-desc {
-      font-size: 0.85rem;
-      color: var(--mid);
-      line-height: 1.6;
-    }
+  .hero-note {
+    font-size: 12.5px; opacity: .65; font-style: italic; margin-top: .5rem;
+  }
 
-    /* ---- DAX MEASURES ---- */
-    .dax-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 0.75rem;
-    }
-    .dax-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--blue);
-      border-radius: 0 4px 4px 0;
-      padding: 0.75rem 1rem;
-    }
-    .dax-item .dax-name {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
-    }
-    .dax-item .dax-desc {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem;
-      color: var(--mid);
-      line-height: 1.5;
-    }
+  /* CONTENT */
+  .content { max-width: 820px; margin: 0 auto; padding: 0 2rem 5rem; }
 
-    /* ---- FINDINGS ---- */
-    .finding {
-      padding: 1.1rem 0;
-      border-bottom: 1px solid var(--border);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-    .finding:last-child { border-bottom: none; }
-    .finding .f-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 0.35rem;
-    }
-    .finding .f-title.red { color: var(--red); }
-    .finding .f-title.amber { color: var(--amber); }
-    .finding .f-title.teal { color: var(--teal); }
-    .finding .f-body {
-      font-size: 0.875rem;
-      color: var(--mid);
-      line-height: 1.65;
-    }
+  section { padding: 3rem 0 0; }
 
-    /* ---- ETHICS BOX ---- */
-    .ethics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.75rem;
-    }
-    .ethics-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.9rem 1rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-    .ethics-item .e-head {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 0.25rem;
-    }
-    .ethics-item .e-body {
-      font-size: 0.8rem;
-      color: var(--mid);
-      line-height: 1.55;
-    }
+  .section-label {
+    font-size: 11.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: .5rem;
+  }
+  .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; }
 
-    /* ---- TOOLS ---- */
-    .tools-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .tool-pill {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem;
-      padding: 0.3rem 0.85rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      color: var(--mid);
-    }
+  .prose {
+    font-size: 14px; color: var(--grey-700); line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
 
-    /* ---- PROSE SECTIONS ---- */
-    .prose {
-      font-size: 1rem;
-      color: var(--mid);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
+  /* PIPELINE GRID */
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 1rem; margin-bottom: 1rem;
+  }
+  .pipeline-card {
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--blue);
+    padding: 1rem 1.1rem;
+  }
+  .pipeline-card .step-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .07em; color: var(--blue); margin-bottom: .35rem;
+  }
+  .pipeline-card .step-title {
+    font-size: 13.5px; font-weight: 600; color: var(--grey-900);
+    margin-bottom: .3rem;
+  }
+  .pipeline-card p {
+    font-size: 12.5px; color: var(--grey-700); line-height: 1.6;
+  }
 
-    /* ---- FOOTER ---- */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      max-width: 820px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    footer a {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.85rem;
-      color: var(--mid);
-      text-decoration: none;
-    }
-    footer a:hover { color: var(--black); }
-    footer .copyright {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.8rem;
-      color: var(--light);
-    }
-  </style>
+  /* KEY FIGURES */
+  .figures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 1rem; margin-bottom: 1rem;
+  }
+  .figure-card {
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+  }
+  .figure-card .fig-val {
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--blue); line-height: 1.1; margin-bottom: .3rem;
+  }
+  .figure-card .fig-val.red   { color: var(--red); }
+  .figure-card .fig-val.amber { color: var(--amber); }
+  .figure-card .fig-val.teal  { color: var(--teal); }
+  .figure-card .fig-label {
+    font-size: 12.5px; color: var(--grey-700); line-height: 1.45;
+  }
+
+  /* REPORT PAGES LIST */
+  .pages-list { list-style: none; border-top: 1px solid var(--grey-200); }
+  .pages-list li { padding: 1rem 0; border-bottom: 1px solid var(--grey-200); }
+  .page-title { font-size: 14px; font-weight: 600; color: var(--grey-900); margin-bottom: .3rem; }
+  .page-desc  { font-size: 13px; color: var(--grey-700); line-height: 1.65; }
+
+  /* DAX MEASURES */
+  .dax-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: .75rem;
+  }
+  .dax-item {
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--blue);
+    padding: .85rem 1rem;
+  }
+  .dax-name {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px; font-weight: 700;
+    color: var(--blue-dk); margin-bottom: .25rem;
+  }
+  .dax-desc { font-size: 12.5px; color: var(--grey-700); line-height: 1.55; }
+
+  /* FINDINGS */
+  .findings-list { border-top: 1px solid var(--grey-200); }
+  .finding { padding: 1.1rem 0; border-bottom: 1px solid var(--grey-200); }
+  .finding:last-child { border-bottom: none; }
+  .finding .f-title {
+    font-size: 14px; font-weight: 600; color: var(--grey-900); margin-bottom: .35rem;
+  }
+  .finding .f-title.red   { color: var(--red); }
+  .finding .f-title.amber { color: var(--amber); }
+  .finding .f-title.teal  { color: var(--teal); }
+  .finding .f-body { font-size: 13px; color: var(--grey-700); line-height: 1.7; }
+
+  /* ETHICS GRID */
+  .ethics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: .75rem;
+  }
+  .ethics-card {
+    background: var(--grey-100);
+    border-radius: var(--radius);
+    padding: .9rem 1rem;
+  }
+  .ethics-card .e-title {
+    font-size: 13px; font-weight: 600; color: var(--grey-900); margin-bottom: .25rem;
+  }
+  .ethics-card .e-body { font-size: 12.5px; color: var(--grey-700); line-height: 1.6; }
+
+  /* TOOLS */
+  .tools-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tool-pill {
+    font-size: 13px; padding: 5px 13px; border-radius: 100px;
+    background: var(--grey-100); color: var(--grey-700);
+    border: 1px solid var(--grey-200);
+  }
+
+  /* BACK LINK */
+  .back-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 13px; font-weight: 500; color: var(--blue);
+    padding: 6px 14px; border: 1.5px solid var(--blue);
+    border-radius: var(--radius); margin-top: 3rem;
+    transition: background .15s;
+  }
+  .back-link:hover { background: var(--blue-lt); text-decoration: none; }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--grey-200); margin: 2.5rem 0 0; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--grey-200);
+    padding: 2rem; text-align: center;
+    font-size: 13px; color: var(--grey-400);
+  }
+
+  @media(max-width:640px){
+    nav { padding: 0 1.25rem; }
+    .page-hero { padding: 3rem 1.25rem 2.5rem; }
+    .content { padding: 0 1.25rem 4rem; }
+    .pipeline-grid, .figures-grid, .dax-grid, .ethics-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
 <nav>
-  <a class="name" href="https://dorcasainaa-dotcom.github.io/index.html">Dorcas Aina</a>
-  <a class="back" href="https://dorcasainaa-dotcom.github.io/index.html">← Back to portfolio</a>
+  <a class="nav-brand" href="https://dorcasainaa-dotcom.github.io/index.html">Dorcas Aina</a>
+  <a class="nav-back"  href="https://dorcasainaa-dotcom.github.io/index.html">&#8592; Back to portfolio</a>
 </nav>
 
-<div class="hero">
-  <div class="category-tags">
-    Power BI <span>·</span> EDI Analytics <span>·</span> People Analytics <span>·</span> HR Data
+<header class="page-hero">
+  <div class="hero-inner">
+    <div class="category-line">Power BI &middot; EDI Analytics &middot; People Analytics &middot; HR Data</div>
+    <h1>EDI Workforce Analytics Dashboard<br>Employee Experience and Inclusion Survey</h1>
+    <p class="intro">End-to-end people analytics project built on an anonymised employee experience and inclusion survey dataset from a UK higher education institution. The dataset covers 299 unique respondents across six departments measuring five inclusion dimensions on a 1 to 5 Likert scale, modelled using a star schema and reported across seven interactive pages designed for both technical and senior HR leadership audiences.</p>
+    <div class="hero-cta">
+      <a class="btn btn-white"   href="Dorcas_Aina_EDI_Workforce_Dashboard.pbix" download>Download .pbix</a>
+      <a class="btn btn-outline" href="Dorcas_Aina_EDI_Workforce_Dashboard.pdf"  download>Download PDF</a>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-blue">Power BI</span>
+      <span class="tag tag-blue">DAX</span>
+      <span class="tag tag-blue">Power Query</span>
+      <span class="tag tag-blue">Star schema</span>
+      <span class="tag tag-teal">EDI analytics</span>
+      <span class="tag tag-teal">People analytics</span>
+      <span class="tag tag-teal">Dimensional modelling</span>
+      <span class="tag tag-amber">Data governance</span>
+      <span class="tag tag-amber">Suppression policy</span>
+      <span class="tag tag-amber">Likert analysis</span>
+    </div>
+    <p class="hero-note">Built on an anonymised survey dataset of 299 respondents. All outputs are aggregate. No individual-level data is included in this portfolio.</p>
   </div>
-
-  <h1>EDI Workforce Analytics Dashboard<br>Employee Experience and Inclusion Survey</h1>
-
-  <p class="intro">
-    End-to-end people analytics project built on an anonymised employee experience and inclusion survey dataset from a UK higher education institution. The dataset covers 299 unique respondents across six departments and five inclusion dimensions scored on a 1 to 5 Likert scale. The work spans the full analytical lifecycle: data quality assessment and remediation in Power Query, dimensional modelling using a three-table star schema in Power BI Desktop, advanced DAX measures for EDI-specific KPIs, and a seven-page interactive report designed for both technical and senior HR leadership audiences.
-  </p>
-
-  <div class="cta-row">
-    <a class="btn btn-primary" href="Dorcas_Aina_EDI_Workforce_Dashboard.pbix" download>Download .pbix report</a>
-    <a class="btn btn-secondary" href="Dorcas_Aina_EDI_Workforce_Dashboard.pdf" download>Download PDF export</a>
-  </div>
-
-  <div class="tag-cloud">
-    <span class="tag">Power BI</span>
-    <span class="tag">DAX</span>
-    <span class="tag">Power Query</span>
-    <span class="tag">Star schema</span>
-    <span class="tag">EDI analytics</span>
-    <span class="tag">People analytics</span>
-    <span class="tag">HR data</span>
-    <span class="tag">Likert analysis</span>
-    <span class="tag">Data governance</span>
-    <span class="tag">Suppression policy</span>
-  </div>
-
-  <p class="note">
-    Built on an anonymised survey dataset of 299 respondents. All outputs are aggregate. No individual-level data is included in this portfolio.
-  </p>
-</div>
+</header>
 
 <div class="content">
 
-  <!-- DATA PREPARATION -->
-  <hr class="divider" />
-  <h2>Data preparation approach</h2>
+  <!-- PIPELINE -->
+  <section>
+    <div class="section-label">Architecture</div>
+    <div class="section-title">Data preparation and model</div>
+    <p class="prose">The raw dataset contained 300 records. One duplicate Employee_ID was removed, leaving 299 unique respondents. Six Progression values recorded as zero were replaced with null rather than deleted: zero falls outside the valid 1 to 5 scale and is inconsistent with a skipped question, and replacing with null preserves those respondents' valid scores across the other four dimensions. A UK locale was applied to correct a date parsing error in the source file, and an Age Group Sort column was added as a numeric key to enforce correct chronological ordering, preventing the default alphabetical sort from misplacing the under-25 group. A composite Inclusion Score was calculated using List.Average across the five dimensions so that null Progression values are averaged correctly without penalising those respondents.</p>
 
-  <p class="prose">
-    The raw dataset contained 300 records. The first action in Power Query was to identify and remove a duplicate Employee_ID (E0151), leaving 299 unique respondents. Six Progression values recorded as zero were replaced with null rather than deleted: zero falls outside the valid 1 to 5 response scale and is inconsistent with a skipped or unanswered question. Replacing with null rather than removing the rows preserves those respondents' valid scores across the other four dimensions. All dimension columns were renamed for clean display, a UK locale was applied to correct a date format issue inherited from the source file, and an Age Group Sort column was added as a numeric key to enforce correct chronological ordering in visuals, preventing the default alphabetical sort from misplacing the under-25 group. A composite Inclusion Score column was built using List.Average across the five dimensions so that null Progression values are handled correctly without penalising those respondents.
-  </p>
-
-  <div class="pipeline-grid">
-    <div class="pipeline-card">
-      <div class="step-label">Step 1</div>
-      <div class="step-title">Remove duplicates</div>
-      <p>Employee_ID E0151 identified and removed via Remove Duplicates. 300 rows to 299.</p>
+    <div class="pipeline-grid">
+      <div class="pipeline-card">
+        <div class="step-label">Data model</div>
+        <div class="step-title">Star schema</div>
+        <p>Three tables: FactSurveyResponse (scores and date), DimEmployee (all demographic attributes), DimDate (survey dates). Many-to-One, single-direction relationships.</p>
+      </div>
+      <div class="pipeline-card">
+        <div class="step-label">Power Query</div>
+        <div class="step-title">Cleaning decisions</div>
+        <p>Duplicate removed. Six Progression zeros replaced with null. UK date locale applied. Age Group Sort column added. Columns renamed for display.</p>
+      </div>
+      <div class="pipeline-card">
+        <div class="step-label">DAX measures</div>
+        <div class="step-title">Measures table</div>
+        <p>All KPIs built as DAX measures in a dedicated _Measures table, not as calculated columns, ensuring correct filter context behaviour across all slicers and drill-throughs.</p>
+      </div>
+      <div class="pipeline-card">
+        <div class="step-label">Governance</div>
+        <div class="step-title">Suppression built in</div>
+        <p>Group Size Label measure evaluates COUNTROWS in the current filter context and returns a suppression warning automatically when any filtered group drops below ten respondents.</p>
+      </div>
     </div>
-    <div class="pipeline-card">
-      <div class="step-label">Step 2</div>
-      <div class="step-title">Replace zeros with null</div>
-      <p>Six Progression values of 0 replaced with null. Outside the 1 to 5 scale, treated as missing not zero.</p>
-    </div>
-    <div class="pipeline-card">
-      <div class="step-label">Step 3</div>
-      <div class="step-title">Fix date locale</div>
-      <p>UK locale applied to Response Date. Source used US format (MM/DD/YYYY), causing silent parsing errors.</p>
-    </div>
-    <div class="pipeline-card">
-      <div class="step-label">Step 4</div>
-      <div class="step-title">Add Age Group Sort</div>
-      <p>Numeric sort key (1 to 5) added and set as Sort By Column. Prevents text sort misplacing the under-25 group.</p>
-    </div>
-    <div class="pipeline-card">
-      <div class="step-label">Step 5</div>
-      <div class="step-title">Add Inclusion Score</div>
-      <p>List.Average of five dimensions. Handles nulls correctly, averaging available values without penalising missing Progression rows.</p>
-    </div>
-    <div class="pipeline-card">
-      <div class="step-label">Step 6</div>
-      <div class="step-title">Rename columns</div>
-      <p>Disability_Status, Manager_Fairness, Age_Group, Speak_Up, Survey_Response_Date renamed for clean visual display.</p>
-    </div>
-  </div>
-
-  <!-- DATA MODEL -->
-  <hr class="divider" />
-  <h2>Data model architecture</h2>
-
-  <p class="prose">
-    The model uses a star schema with three tables and single-direction Many-to-One relationships from the fact table to each dimension. Flat-loading a single denormalised table would not constitute modelling: the star schema separates concerns correctly, enables reliable filter propagation across demographic slicers and drill-throughs, and is scalable if the survey is run annually and new fact rows are appended. All KPIs are built as DAX measures rather than calculated columns, ensuring they evaluate in the correct filter context regardless of which slicer or drill-through is active.
-  </p>
-
-  <div class="pipeline-grid">
-    <div class="pipeline-card">
-      <div class="step-label">Fact table</div>
-      <div class="step-title">FactSurveyResponse</div>
-      <p>One row per respondent. Holds all five dimension scores, Response Date, Inclusion Score, and Employee_ID as foreign key.</p>
-    </div>
-    <div class="pipeline-card">
-      <div class="step-label">Dimension table</div>
-      <div class="step-title">DimEmployee</div>
-      <p>One row per employee. Holds all demographic attributes: Department, Grade, Gender, Ethnicity, Disability Status, Age Group, Age Group Sort.</p>
-    </div>
-    <div class="pipeline-card">
-      <div class="step-label">Dimension table</div>
-      <div class="step-title">DimDate</div>
-      <p>One row per survey date. Supports year-on-year trend analysis if the survey runs annually. Relationships are Many-to-One, single direction.</p>
-    </div>
-  </div>
+  </section>
 
   <!-- KEY FIGURES -->
-  <hr class="divider" />
-  <h2>Key figures</h2>
+  <hr />
+  <section>
+    <div class="section-label">Key figures</div>
+    <div class="section-title">Headline numbers</div>
+    <div class="figures-grid">
+      <div class="figure-card"><div class="fig-val red">2.76</div><div class="fig-label">Avg Progression score, lowest of all five dimensions</div></div>
+      <div class="figure-card"><div class="fig-val red">43%</div><div class="fig-label">Respondents rating Progression negatively (score 1 or 2)</div></div>
+      <div class="figure-card"><div class="fig-val amber">0.13</div><div class="fig-label">Gender progression gap: men score higher than women</div></div>
+      <div class="figure-card"><div class="fig-val red">2.74</div><div class="fig-label">STEM Authenticity, lowest department (0.63 gap vs Digital Services)</div></div>
+      <div class="figure-card"><div class="fig-val amber">2.96</div><div class="fig-label">WELS Speak Up, lowest psychological safety score of any department</div></div>
+      <div class="figure-card"><div class="fig-val teal">3.15</div><div class="fig-label">Black employee Belonging: higher than White British colleagues (2.84)</div></div>
+      <div class="figure-card"><div class="fig-val">2.98</div><div class="fig-label">Overall Inclusion Score, composite mean of five dimensions</div></div>
+      <div class="figure-card"><div class="fig-val">299</div><div class="fig-label">Unique respondents after duplicate removal across six departments</div></div>
+    </div>
+  </section>
 
-  <div class="figures-grid">
-    <div class="figure-card">
-      <div class="fig-val red">2.76</div>
-      <div class="fig-label">Avg Progression score — lowest of all five dimensions (1 to 5 scale)</div>
-    </div>
-    <div class="figure-card">
-      <div class="fig-val red">43%</div>
-      <div class="fig-label">Respondents rating Progression negatively (score 1 or 2)</div>
-    </div>
-    <div class="figure-card">
-      <div class="fig-val amber">0.13</div>
-      <div class="fig-label">Gender progression gap — men score higher than women</div>
-    </div>
-    <div class="figure-card">
-      <div class="fig-val red">2.69</div>
-      <div class="fig-label">Average Progression score for female respondents</div>
-    </div>
-    <div class="figure-card">
-      <div class="fig-val red">2.74</div>
-      <div class="fig-label">STEM Authenticity — lowest department score (0.63 gap vs Digital Services)</div>
-    </div>
-    <div class="figure-card">
-      <div class="fig-val amber">2.96</div>
-      <div class="fig-label">WELS Speak Up — lowest psychological safety score of any department</div>
-    </div>
-    <div class="figure-card">
-      <div class="fig-val teal">3.15</div>
-      <div class="fig-label">Black employee Belonging — higher than White British colleagues (2.84)</div>
-    </div>
-    <div class="figure-card">
-      <div class="fig-val">2.98</div>
-      <div class="fig-label">Overall Inclusion Score — composite mean of five dimensions</div>
-    </div>
-  </div>
+  <!-- REPORT PAGES -->
+  <hr />
+  <section>
+    <div class="section-label">Report</div>
+    <div class="section-title">Report pages</div>
+    <ul class="pages-list">
+      <li>
+        <div class="page-title">Executive Summary</div>
+        <div class="page-desc">Single-view leadership page with three headline KPI cards, three RAG-coded finding cards covering the progression risk, departmental risks, and the positive Belonging signal, and three recommended actions with timelines. Designed for a Director to read the full picture without navigating to any other page.</div>
+      </li>
+      <li>
+        <div class="page-title">Overview</div>
+        <div class="page-desc">Five KPI cards for all inclusion dimensions, an Overall Inclusion Score card, a horizontal bar chart of all five dimensions against the 3.5 aspirational target line, and two donut charts showing respondent composition by gender and ethnicity.</div>
+      </li>
+      <li>
+        <div class="page-title">Progression</div>
+        <div class="page-desc">Deep-dive on the headline risk. Four KPI cards, bar charts of average Progression by gender, ethnicity, and age group, and a 100% stacked bar showing the full response distribution (negative, neutral, positive) by gender group.</div>
+      </li>
+      <li>
+        <div class="page-title">Heatmap</div>
+        <div class="page-desc">Four matrix visuals with red-white-green conditional formatting showing all five dimension scores across Ethnicity, Gender, Grade, and Disability Status simultaneously. A department slicer filters all matrices together. The Group Size Label card shows the n= for any filtered selection and suppresses automatically when a group drops below ten.</div>
+      </li>
+      <li>
+        <div class="page-title">Departments</div>
+        <div class="page-desc">All five dimension scores as a clustered bar chart across all six departments, with dedicated charts for Authenticity by department (STEM lowest) and Speak Up by department (WELS lowest). Drill-through enabled: right-clicking any department bar on any other page navigates to this page filtered to that department.</div>
+      </li>
+      <li>
+        <div class="page-title">Explore</div>
+        <div class="page-desc">Two Decomposition Tree visuals for live Q&amp;A use: one analysing Avg Progression by Department, Gender, Ethnicity, and Grade; one analysing Avg Belonging to surface the positive counter-narrative. Used interactively during the presentation rather than pre-configured.</div>
+      </li>
+      <li>
+        <div class="page-title">Data Dictionary</div>
+        <div class="page-desc">Full governance reference page documenting every Power Query transformation step, the suppression policy, the non-binary group boundary case, and the data model architecture, so any analyst opening the file can understand every decision without reading external documentation.</div>
+      </li>
+    </ul>
+  </section>
 
-  <!-- DASHBOARD PAGES -->
-  <hr class="divider" />
-  <h2>Report pages</h2>
-
-  <ul class="pages-list">
-    <li>
-      <div class="page-title">Executive Summary</div>
-      <div class="page-desc">Single-view leadership page showing three headline KPI cards, three RAG-coded finding cards covering the progression risk, departmental risks, and positive belonging signal, and three recommended actions with timelines. Designed so a Director can read the full picture in under 30 seconds without navigating to any other page.</div>
-    </li>
-    <li>
-      <div class="page-title">Overview</div>
-      <div class="page-desc">Five KPI cards showing average scores for all inclusion dimensions, a composite Overall Inclusion Score card, a horizontal bar chart of all five dimensions against the 3.5 aspirational target line, and two donut charts showing respondent composition by gender and by ethnicity.</div>
-    </li>
-    <li>
-      <div class="page-title">Progression</div>
-      <div class="page-desc">Deep-dive on the headline risk. Four KPI cards (average progression, percentage negative, gender gap, total respondents), bar charts of average Progression by gender, ethnicity, and age group, and a 100% stacked bar showing the full response distribution (negative, neutral, positive) by gender group.</div>
-    </li>
-    <li>
-      <div class="page-title">Heatmap</div>
-      <div class="page-desc">Four matrix visuals with red-white-green conditional formatting showing all five dimension scores across Ethnicity, Gender, Grade, and Disability Status simultaneously. Department slicer filters all matrices together. A Group Size Label card shows the n= count for any filtered selection and displays a suppression warning automatically when the group drops below ten respondents.</div>
-    </li>
-    <li>
-      <div class="page-title">Departments</div>
-      <div class="page-desc">All five dimension scores shown as a clustered bar chart across all six departments. Dedicated bar charts for Authenticity by department (STEM as lowest) and Speak Up by department (WELS as lowest). Department and Grade slicers with drill-through enabled: right-clicking any department bar on any other page and selecting Drill through navigates to this page filtered to that department.</div>
-    </li>
-    <li>
-      <div class="page-title">Explore</div>
-      <div class="page-desc">Two Decomposition Tree visuals for live Q&A use. The first analyses Avg Progression, expanding by Department, Gender, Ethnicity, and Grade. The second analyses Avg Belonging to surface the positive counter-narrative. Both trees reset on page load and are used interactively during the presentation rather than pre-configured.</div>
-    </li>
-    <li>
-      <div class="page-title">Data Dictionary</div>
-      <div class="page-desc">Full governance reference page documenting all Power Query transformation steps, the suppression policy (n less than 10), the non-binary group boundary case, and the data model architecture. Designed so any analyst opening the file can understand every decision made without reading external documentation.</div>
-    </li>
-  </ul>
-
-  <!-- DAX MEASURES -->
-  <hr class="divider" />
-  <h2>DAX measures built</h2>
-
-  <div class="dax-grid">
-    <div class="dax-item">
-      <div class="dax-name">Total Respondents</div>
-      <div class="dax-desc">COUNTROWS on FactSurveyResponse. Base count measure used across all pages.</div>
+  <!-- DAX -->
+  <hr />
+  <section>
+    <div class="section-label">DAX</div>
+    <div class="section-title">DAX measures built</div>
+    <div class="dax-grid">
+      <div class="dax-item">
+        <div class="dax-name">Total Respondents</div>
+        <div class="dax-desc">COUNTROWS on FactSurveyResponse. Base count used across all pages.</div>
+      </div>
+      <div class="dax-item">
+        <div class="dax-name">Avg Belonging / Authenticity / Manager Fairness / Progression / Speak Up</div>
+        <div class="dax-desc">Five AVERAGE measures. AVERAGE excludes null values automatically so the six null Progression rows do not distort the mean.</div>
+      </div>
+      <div class="dax-item">
+        <div class="dax-name">Overall Inclusion Score</div>
+        <div class="dax-desc">Mean of the five dimension averages. One composite headline number for executive comparison across departments and demographic groups.</div>
+      </div>
+      <div class="dax-item">
+        <div class="dax-name">% Favourable / Neutral / Negative Progression</div>
+        <div class="dax-desc">Three DIVIDE-COUNTROWS-FILTER measures splitting responses into positive (4 to 5), neutral (3), and negative (1 to 2). Used in the 100% stacked bar chart.</div>
+      </div>
+      <div class="dax-item">
+        <div class="dax-name">Gender Progression Gap</div>
+        <div class="dax-desc">VAR stores Male and Female averages independently via CALCULATE, then returns the arithmetic difference. A positive result confirms men score higher.</div>
+      </div>
+      <div class="dax-item">
+        <div class="dax-name">Dimension Colour (SWITCH)</div>
+        <div class="dax-desc">SWITCH reads the current dimension name from a disconnected Dimensions table and returns the matching average, driving conditional formatting across all five dimensions in one chart.</div>
+      </div>
+      <div class="dax-item">
+        <div class="dax-name">Group Size Label</div>
+        <div class="dax-desc">Governance measure: IF COUNTROWS is below ten, returns a suppression warning. Otherwise returns the n= count. Responds to every slicer and drill-through in real time.</div>
+      </div>
+      <div class="dax-item">
+        <div class="dax-name">Safe Avg Progression</div>
+        <div class="dax-desc">Returns BLANK rather than an average when the filtered group is below the suppression threshold of ten. Used on charts where intersectional combinations risk producing unreliable figures.</div>
+      </div>
     </div>
-    <div class="dax-item">
-      <div class="dax-name">Avg Belonging / Authenticity / Manager Fairness / Progression / Speak Up</div>
-      <div class="dax-desc">Five AVERAGE measures on the respective score columns. AVERAGE excludes null values automatically, so the six null Progression rows do not distort the mean.</div>
-    </div>
-    <div class="dax-item">
-      <div class="dax-name">Overall Inclusion Score</div>
-      <div class="dax-desc">Simple mean of the five dimension averages. Gives leadership one composite headline number for executive comparison across departments and demographic groups.</div>
-    </div>
-    <div class="dax-item">
-      <div class="dax-name">% Favourable / Neutral / Negative Progression</div>
-      <div class="dax-desc">Three DIVIDE-COUNTROWS-FILTER measures splitting responses into positive (score 4 to 5), neutral (score 3), and negative (score 1 to 2). Used in the 100% stacked bar distribution chart.</div>
-    </div>
-    <div class="dax-item">
-      <div class="dax-name">Gender Progression Gap</div>
-      <div class="dax-desc">VAR stores Male and Female averages independently using CALCULATE. Returns the arithmetic difference. Positive result confirms men score higher. Used as a KPI card on the Progression page.</div>
-    </div>
-    <div class="dax-item">
-      <div class="dax-name">Gap vs Target</div>
-      <div class="dax-desc">Avg Progression minus 3.5 (the aspirational benchmark). Returns a negative number when below target. Used in waterfall chart contexts to show how far each dimension falls short.</div>
-    </div>
-    <div class="dax-item">
-      <div class="dax-name">Dimension Colour (SWITCH)</div>
-      <div class="dax-desc">SWITCH reading the current dimension name from a disconnected Dimensions table and returning the matching average. Enables a single RAG colour measure to drive conditional formatting across all five dimensions in one chart.</div>
-    </div>
-    <div class="dax-item">
-      <div class="dax-name">Group Size Label</div>
-      <div class="dax-desc">Governance measure: IF COUNTROWS is less than 10, returns a suppression warning. Otherwise returns the n= count. Responds to every slicer and drill-through in real time. Embedded on every breakdown page so the panel always knows the group size behind any filtered view.</div>
-    </div>
-    <div class="dax-item">
-      <div class="dax-name">Safe Avg Progression</div>
-      <div class="dax-desc">Returns BLANK rather than an average when the filtered group is below the suppression threshold of ten. Used on charts where small-group intersectional combinations could produce statistically unreliable figures.</div>
-    </div>
-  </div>
+  </section>
 
   <!-- KEY FINDINGS -->
-  <hr class="divider" />
-  <h2>Key findings</h2>
+  <hr />
+  <section>
+    <div class="section-label">Analysis</div>
+    <div class="section-title">Key findings</div>
+    <div class="findings-list">
+      <div class="finding">
+        <div class="f-title red">Progression: the most urgent inclusion risk</div>
+        <div class="f-body">Progression is the lowest-scoring dimension at 2.76 out of 5, with 43% of all respondents rating it negatively. Female respondents average 2.69 versus 2.83 for male respondents, and 48% of women give a negative score compared to 37% of men. Black employees score the lowest of any ethnic group at 2.64, compared to 2.75 for White British colleagues. The under-25 age group scores lowest of any age band (2.62), and the 55 and over group is second lowest (2.67): the career development pipeline fails people at both ends as well as in the middle. These are structural patterns, not individual ones.</div>
+      </div>
+      <div class="finding">
+        <div class="f-title amber">STEM: Authenticity at 2.74, the lowest department score</div>
+        <div class="f-body">STEM records the lowest Authenticity score of any department at 2.74, a gap of 0.63 points below Digital Services at 3.37. In a technical environment where diverse thinking and psychological safety directly affect innovation and problem-solving, a score of 2.74 represents an organisational risk beyond the inclusion dimension alone.</div>
+      </div>
+      <div class="finding">
+        <div class="f-title amber">WELS: the lowest Speak Up score of any department</div>
+        <div class="f-body">WELS records the lowest Speak Up score at 2.96, the only department below 3.0 on this dimension. Whether this reflects management style, team culture, or structural workload pressures, the data cannot identify the cause without a qualitative follow-up, and any intervention risks targeting the wrong lever without one.</div>
+      </div>
+      <div class="finding">
+        <div class="f-title teal">Positive signal: Belonging is strongest for ethnic minority employees</div>
+        <div class="f-body">Black employees (3.15) and Asian employees (3.09) report higher Belonging scores than White British colleagues (2.84). The problem in this dataset is not hostile or unwelcoming culture: people feel welcomed when they arrive. The barrier is structural progression. This distinction matters for intervention design because the same approach will not fix both problems.</div>
+      </div>
+    </div>
+  </section>
 
-  <div class="finding">
-    <div class="f-title red">Progression: the most urgent inclusion risk</div>
-    <div class="f-body">Progression is the lowest-scoring dimension across the organisation at 2.76 out of 5, with 43% of all respondents rating it negatively. Female respondents average 2.69 versus 2.83 for male respondents, a gap of 0.13 points. 48% of women give a negative score compared to 37% of men. Black employees score the lowest of any ethnic group on Progression at 2.64, compared to 2.75 for White British colleagues. The under-25 age group scores the lowest of any age band (2.62), and the 55 and over group is the second lowest (2.67), indicating the career development pipeline fails people at the start and end of their careers as well as in the middle. These are structural patterns, not individual ones.</div>
-  </div>
-  <div class="finding">
-    <div class="f-title amber">STEM: authenticity at 2.74, the lowest department score</div>
-    <div class="f-body">STEM records the lowest Authenticity score of any department at 2.74, a gap of 0.63 points below Digital Services at 3.37. Authenticity measures whether staff feel able to bring their full selves to work. In a technical environment where diverse thinking and psychological safety directly affect innovation and problem-solving, a score of 2.74 represents an organisational risk beyond the inclusion dimension alone. This finding warrants a targeted listening session with STEM leadership before any intervention is designed.</div>
-  </div>
-  <div class="finding">
-    <div class="f-title amber">WELS: the lowest Speak Up score of any department</div>
-    <div class="f-body">WELS records the lowest Speak Up score at 2.96, the only department below 3.0 on this dimension. Speak Up measures whether staff feel able to raise concerns or speak honestly. A score of 2.96 suggests a potential silencing pattern that may reflect management style, team culture, or structural workload pressures. Without a qualitative follow-up, the data cannot identify the cause, and any intervention risks targeting the wrong lever.</div>
-  </div>
-  <div class="finding">
-    <div class="f-title teal">Positive signal: Belonging is the strongest dimension for ethnic minority employees</div>
-    <div class="f-body">Black employees (3.15) and Asian employees (3.09) report higher Belonging scores than White British colleagues (2.84). This is an important counter-narrative. The problem in this dataset is not hostile or unwelcoming culture: people feel welcomed when they arrive. The barrier is structural progression. This distinction matters for intervention design because the same approach will not fix both things. Diversity and inclusion initiatives focused on welcome and culture will not close a progression gap driven by structural processes such as promotion panels, sponsorship, and stretch opportunity allocation.</div>
-  </div>
-
-  <!-- GOVERNANCE -->
-  <hr class="divider" />
-  <h2>Ethical and governance approach</h2>
-
-  <div class="ethics-grid">
-    <div class="ethics-item">
-      <div class="e-head">Suppression policy</div>
-      <div class="e-body">Groups of fewer than 10 respondents are not reported independently. The non-binary group (n=10) sits exactly at this boundary and is presented as directionally indicative only, with an explicit caveat on every chart it appears in.</div>
+  <!-- ETHICS -->
+  <hr />
+  <section>
+    <div class="section-label">Governance</div>
+    <div class="section-title">Ethical and governance approach</div>
+    <div class="ethics-grid">
+      <div class="ethics-card">
+        <div class="e-title">Suppression policy</div>
+        <div class="e-body">Groups of fewer than 10 respondents are not reported independently. The non-binary group (n=10) sits exactly at this boundary and is presented as directionally indicative only, with an explicit caveat on every chart it appears in.</div>
+      </div>
+      <div class="ethics-card">
+        <div class="e-title">Re-identification risk</div>
+        <div class="e-body">Intersectional cuts are suppressed where rare demographic combinations could enable re-identification. Governance is embedded via the Group Size Label measure, not applied manually after the fact.</div>
+      </div>
+      <div class="ethics-card">
+        <div class="e-title">Prefer not to say</div>
+        <div class="e-body">Non-disclosure is retained and treated as an inclusion signal rather than missing data. 15% non-disclosure on ethnicity likely understates ethnic disparity findings.</div>
+      </div>
+      <div class="ethics-card">
+        <div class="e-title">Framing</div>
+        <div class="e-body">All disparities are framed as institutional patterns, not individual characteristics. Language choices matter in EDI reporting: the same finding can prompt action or prompt defensiveness depending on how it is written.</div>
+      </div>
+      <div class="ethics-card">
+        <div class="e-title">Accessibility</div>
+        <div class="e-body">All visuals include alt text. Colour coding is always paired with text labels so the report is usable for colour-blind readers without relying on colour alone to convey meaning.</div>
+      </div>
+      <div class="ethics-card">
+        <div class="e-title">Feedback loop</div>
+        <div class="e-body">Survey participants should be informed of findings and what the organisation commits to doing. Closing this loop is the principal driver of participation rates in future survey cycles.</div>
+      </div>
     </div>
-    <div class="ethics-item">
-      <div class="e-head">Re-identification risk</div>
-      <div class="e-body">Intersectional cuts (ethnicity by disability by grade) are suppressed where rare demographic combinations could enable re-identification of individual respondents. Governance is embedded in the report via the Group Size Label measure, not applied manually.</div>
-    </div>
-    <div class="ethics-item">
-      <div class="e-head">Prefer not to say</div>
-      <div class="e-body">Non-disclosure is retained in analysis and treated as an inclusion signal rather than missing data to remove. 15% non-disclosure on ethnicity likely understates ethnic disparity findings: those with most negative experiences may also feel least safe disclosing identity.</div>
-    </div>
-    <div class="ethics-item">
-      <div class="e-head">Framing principle</div>
-      <div class="e-body">All disparities are framed as institutional patterns, not individual characteristics. Language choices matter in EDI reporting: the same finding can prompt action or prompt defensiveness depending on how it is written.</div>
-    </div>
-    <div class="ethics-item">
-      <div class="e-head">Accessibility</div>
-      <div class="e-body">All visuals include alt text. Colour coding is always paired with text labels so the report is usable for colour-blind readers without relying on colour alone to convey meaning.</div>
-    </div>
-    <div class="ethics-item">
-      <div class="e-head">Feedback loop</div>
-      <div class="e-body">Survey participants should be informed of findings and what the organisation commits to doing as a result. Closing this loop is not optional: it is the principal driver of participation rates in future survey cycles.</div>
-    </div>
-  </div>
+  </section>
 
   <!-- TOOLS -->
-  <hr class="divider" />
-  <h2>Tools and techniques</h2>
+  <hr />
+  <section>
+    <div class="section-label">Stack</div>
+    <div class="section-title">Tools and techniques</div>
+    <div class="tools-cloud">
+      <span class="tool-pill">Power BI Desktop</span>
+      <span class="tool-pill">Power Query (M)</span>
+      <span class="tool-pill">DAX</span>
+      <span class="tool-pill">Star schema</span>
+      <span class="tool-pill">Dimensional modelling</span>
+      <span class="tool-pill">Conditional formatting</span>
+      <span class="tool-pill">Decomposition Tree</span>
+      <span class="tool-pill">100% stacked bar</span>
+      <span class="tool-pill">Heatmap matrix</span>
+      <span class="tool-pill">Drill-through pages</span>
+      <span class="tool-pill">EDI analytics</span>
+      <span class="tool-pill">Likert scale analysis</span>
+      <span class="tool-pill">Suppression policy</span>
+      <span class="tool-pill">Data governance</span>
+      <span class="tool-pill">WCAG accessibility</span>
+    </div>
+  </section>
 
-  <div class="tools-cloud">
-    <span class="tool-pill">Power BI Desktop</span>
-    <span class="tool-pill">Power Query (M)</span>
-    <span class="tool-pill">DAX</span>
-    <span class="tool-pill">Star schema</span>
-    <span class="tool-pill">Dimensional modelling</span>
-    <span class="tool-pill">Conditional formatting</span>
-    <span class="tool-pill">Decomposition Tree</span>
-    <span class="tool-pill">100% stacked bar</span>
-    <span class="tool-pill">Heatmap matrix</span>
-    <span class="tool-pill">Drill-through pages</span>
-    <span class="tool-pill">Bookmark navigation</span>
-    <span class="tool-pill">EDI analytics</span>
-    <span class="tool-pill">Likert scale analysis</span>
-    <span class="tool-pill">Suppression policy</span>
-    <span class="tool-pill">Data governance</span>
-    <span class="tool-pill">WCAG accessibility</span>
-  </div>
+  <a class="back-link" href="https://dorcasainaa-dotcom.github.io/index.html">&#8592; Back to portfolio</a>
 
 </div>
 
 <footer>
-  <a href="https://dorcasainaa-dotcom.github.io/index.html">← Back to portfolio</a>
-  <span class="copyright">Dorcas Aina &copy; 2026 &middot; Hosted on GitHub Pages</span>
+  Dorcas Aina &copy; 2026 &middot; Hosted on GitHub Pages
 </footer>
 
 </body>
