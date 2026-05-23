@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dorcas Aina: Data Analyst</title>
+<title>Dorcas Aina: Analytics Engineer &amp; Data Analyst</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -328,11 +328,12 @@
 <header class="hero">
   <div class="hero-eyebrow">Open to senior analyst roles and consultancy engagements</div>
   <h1>Dorcas Aina</h1>
-  <p class="hero-sub">Data and Information Analyst specialising in performance intelligence, business intelligence, and data governance for local government and public sector organisations. Available for permanent roles and project-based consultancy.</p>
+  <p class="hero-sub">Analytics Engineer and Data Analyst specialising in end-to-end pipeline design, business intelligence, and data governance for UK public sector organisations. Available for permanent roles and project-based consultancy.</p>
   <div class="hero-badges">
     <span class="hero-badge">Power BI &amp; Microsoft Fabric</span>
     <span class="hero-badge">Python &amp; NLP</span>
     <span class="hero-badge">SQL &amp; ETL</span>
+    <span class="hero-badge">dbt Cloud &amp; BigQuery</span>
     <span class="hero-badge hero-badge-iso">ISO/IEC 27001 Lead Auditor</span>
     <span class="hero-badge">PRINCE2 Foundation</span>
     <span class="hero-badge hero-badge-iso">ISO/IEC 42001 AI Lead Auditor</span>
@@ -407,7 +408,53 @@
         </div>
       </div>
 
-      <!-- Fabric Performance Dashboard -->
+      <!-- Public Services Analytics Hub -->
+      <div class="project-card featured">
+        <span class="status-badge status-live">Live</span>
+        <div class="project-card-top">
+          <h3>Local Government Performance Analytics: Microsoft Fabric, dbt Cloud &amp; Power BI</h3>
+          <span class="project-date">2026</span>
+        </div>
+        <p>End-to-end open data analytics pipeline analysing UK local authority performance across expenditure, deprivation, educational attainment, and labour market indicators. Bronze and Silver Delta tables built in Microsoft Fabric using PySpark; data exported to BigQuery and modelled in dbt Cloud with four staging models, tested with dbt not_null and unique constraints, and a gold-layer fact table joining all four datasets at LA level. Five-page Power BI report surfacing cross-cutting findings across 3,400+ rows. Key finding: adult social care's share of LA spending grew from 25% to 28% between 2017/18 and 2024/25, consistent with ageing population pressures across English local government.</p>
+        <div class="tag-row">
+          <span class="tag tag-blue">Microsoft Fabric</span>
+          <span class="tag tag-blue">dbt Cloud</span>
+          <span class="tag tag-blue">BigQuery</span>
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-teal">PySpark</span>
+          <span class="tag tag-teal">Medallion architecture</span>
+          <span class="tag tag-teal">Delta tables</span>
+          <span class="tag tag-amber">Open government data</span>
+          <span class="tag tag-amber">Local government analytics</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="psah-dashboard.pdf" download>Download Report (PDF) →</a>
+          <a class="project-link" href="https://github.com/public-services-analytics-hub/la-performance-analytics" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- fabric-local-gov-starter -->
+      <div class="project-card featured">
+        <span class="status-badge status-live">Live</span>
+        <div class="project-card-top">
+          <h3>Microsoft Fabric Local Government Starter: Reusable Analytics Template</h3>
+          <span class="project-date">2026</span>
+        </div>
+        <p>Open-source starter template enabling any UK local authority to deploy a full medallion architecture analytics pipeline against their own DLUHC Revenue Outturn RS data. Packages a parameterised PySpark ETL notebook, star schema semantic model with DAX measures, and a four-page Power BI report template. Any council can clone the repo, update three configuration parameters, and run the pipeline end to end without writing code from scratch.</p>
+        <div class="tag-row">
+          <span class="tag tag-blue">Microsoft Fabric</span>
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-blue">DAX</span>
+          <span class="tag tag-teal">PySpark</span>
+          <span class="tag tag-teal">Delta tables</span>
+          <span class="tag tag-teal">Open source</span>
+          <span class="tag tag-amber">Local government</span>
+          <span class="tag tag-amber">DLUHC open data</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/public-services-analytics-hub/fabric-local-gov-starter" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
       <div class="project-card featured">
         <span class="status-badge status-live">Live</span>
         <div class="project-card-top">
@@ -604,7 +651,7 @@
           <span class="skill-tag">Holt-Winters</span>
           <span class="skill-tag">ETL pipelines</span>
           <span class="skill-tag">Azure</span>
-          <span class="skill-tag">dbt (in progress)</span>
+          <span class="skill-tag">dbt Cloud</span>
         </div>
       </div>
       <div>
@@ -663,7 +710,7 @@
     </div>
 
     <div class="cta-box">
-      <p>Available for project-based engagements. Bedford-based, open to remote and hybrid work across the UK.</p>
+      <p>Available for project-based engagements. UK-based, open to remote and hybrid work.</p>
       <a href="mailto:dorcas.ainaa@gmail.com">Get in touch</a>
     </div>
 
@@ -675,11 +722,11 @@
   <div class="container">
     <div class="contact-box">
       <h3>Get in touch</h3>
-      <p>Open to permanent analyst roles and project-based consultancy engagements.<br>Bedford-based, available for hybrid and remote work across the UK.</p>
+      <p>Open to permanent analyst roles and project-based consultancy engagements.<br>UK-based, available for hybrid and remote work.</p>
       <div class="contact-links">
         <a class="contact-link" href="mailto:dorcas.ainaa@gmail.com">✉ dorcas.ainaa@gmail.com</a>
         <a class="contact-link" href="https://www.linkedin.com/in/dorcas-aina/" target="_blank">LinkedIn</a>
-        <a class="contact-link" href="https://github.com/dorcasainaa-dotcom" target="_blank">GitHub</a>
+        <a class="contact-link" href="https://github.com/public-services-analytics-hub" target="_blank">GitHub</a>
         <a class="contact-link" href="https://medium.com/@dorcas.ainaa" target="_blank">Medium</a>
       </div>
     </div>
