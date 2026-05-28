@@ -385,76 +385,6 @@
 
     <div class="projects-grid">
 
-      <!-- Love Island -->
-      <div class="project-card featured">
-        <span class="status-badge status-live">Live</span>
-        <div class="project-card-top">
-          <h3>Love Island UK 2022: Twitter Sentiment &amp; NLP Analysis</h3>
-          <span class="project-date">Jan 2023</span>
-        </div>
-        <p>End-to-end NLP and sentiment analysis of 200,000 tweets scraped during the 2022 Love Island UK season using Python's snscrape library and the Twitter API. Applied a full preprocessing pipeline: tokenisation, stop word removal, lemmatisation, and regex hashtag extraction: before classifying tweet sentiment using TextBlob polarity scoring. Found that 69.44% of tweets were positive about the show, and that the most-tweeted couple did not win: suggesting Twitter engagement does not correlate with viewer votes. Visualised findings in Power BI covering sentiment distribution, hashtag frequency by couple, and geographic spread across 8 countries.</p>
-        <div class="tag-row">
-          <span class="tag tag-purple">Python</span>
-          <span class="tag tag-purple">NLP</span>
-          <span class="tag tag-purple">TextBlob</span>
-          <span class="tag tag-purple">NLTK</span>
-          <span class="tag tag-purple">snscrape</span>
-          <span class="tag tag-blue">Power BI</span>
-          <span class="tag tag-teal">200,000 records</span>
-          <span class="tag tag-teal">Sentiment analysis</span>
-        </div>
-        <div class="project-links">
-          <a class="project-link" href="https://medium.com/@dorcas.ainaa/love-island-uk-2022-an-analysis-of-twitters-perception-on-the-dating-show-a7e7e38d6e88" target="_blank">Read on Medium →</a>
-        </div>
-      </div>
-
-      <!-- Public Services Analytics Hub -->
-      <div class="project-card featured">
-        <span class="status-badge status-live">Live</span>
-        <div class="project-card-top">
-          <h3>Local Government Performance Analytics: Microsoft Fabric, dbt Cloud &amp; Power BI</h3>
-          <span class="project-date">2026</span>
-        </div>
-        <p>End-to-end open data analytics pipeline analysing UK local authority performance across expenditure, deprivation, educational attainment, and labour market indicators. Bronze and Silver Delta tables built in Microsoft Fabric using PySpark; data exported to BigQuery and modelled in dbt Cloud with four staging models, tested with dbt not_null and unique constraints, and a gold-layer fact table joining all four datasets at LA level. Five-page Power BI report surfacing cross-cutting findings across 3,400+ rows. Key finding: adult social care's share of LA spending grew from 25% to 28% between 2017/18 and 2024/25, consistent with ageing population pressures across English local government.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Microsoft Fabric</span>
-          <span class="tag tag-blue">dbt Cloud</span>
-          <span class="tag tag-blue">BigQuery</span>
-          <span class="tag tag-blue">Power BI</span>
-          <span class="tag tag-teal">PySpark</span>
-          <span class="tag tag-teal">Medallion architecture</span>
-          <span class="tag tag-teal">Delta tables</span>
-          <span class="tag tag-amber">Open government data</span>
-          <span class="tag tag-amber">Local government analytics</span>
-        </div>
-        <div class="project-links">
-          <a class="project-link" href="psah-dashboard.pdf" download>Download Report (PDF) →</a>
-          <a class="project-link" href="https://github.com/public-services-analytics-hub/la-performance-analytics" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-
-      <!-- fabric-local-gov-starter -->
-      <div class="project-card featured">
-        <span class="status-badge status-live">Live</span>
-        <div class="project-card-top">
-          <h3>Microsoft Fabric Local Government Starter: Reusable Analytics Template</h3>
-          <span class="project-date">2026</span>
-        </div>
-        <p>Open-source starter template enabling any UK local authority to deploy a full medallion architecture analytics pipeline against their own DLUHC Revenue Outturn RS data. Packages a parameterised PySpark ETL notebook, star schema semantic model with DAX measures, and a four-page Power BI report template. Any council can clone the repo, update three configuration parameters, and run the pipeline end to end without writing code from scratch.</p>
-        <div class="tag-row">
-          <span class="tag tag-blue">Microsoft Fabric</span>
-          <span class="tag tag-blue">Power BI</span>
-          <span class="tag tag-blue">DAX</span>
-          <span class="tag tag-teal">PySpark</span>
-          <span class="tag tag-teal">Delta tables</span>
-          <span class="tag tag-teal">Open source</span>
-          <span class="tag tag-amber">Local government</span>
-          <span class="tag tag-amber">DLUHC open data</span>
-        </div>
-        <div class="project-links">
-          <a class="project-link" href="https://github.com/public-services-analytics-hub/fabric-local-gov-starter" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
       <!-- Equity Analytics Dashboard -->
       <div class="project-card featured">
         <span class="status-badge status-live">Live</span>
@@ -481,6 +411,34 @@
         </div>
       </div>
 
+
+      <!-- Public Services Analytics Hub -->
+      <div class="project-card featured">
+        <span class="status-badge status-live">Live</span>
+        <div class="project-card-top">
+          <h3>Local Government Performance Analytics: Microsoft Fabric, dbt Cloud &amp; Power BI</h3>
+          <span class="project-date">2026</span>
+        </div>
+        <p>End-to-end open data analytics pipeline analysing UK local authority performance across expenditure, deprivation, educational attainment, and labour market indicators. Bronze and Silver Delta tables built in Microsoft Fabric using PySpark; data exported to BigQuery and modelled in dbt Cloud with four staging models, tested with dbt not_null and unique constraints, and a gold-layer fact table joining all four datasets at LA level. Five-page Power BI report surfacing cross-cutting findings across 3,400+ rows. Key finding: adult social care's share of LA spending grew from 25% to 28% between 2017/18 and 2024/25, consistent with ageing population pressures across English local government.</p>
+        <div class="tag-row">
+          <span class="tag tag-blue">Microsoft Fabric</span>
+          <span class="tag tag-blue">dbt Cloud</span>
+          <span class="tag tag-blue">BigQuery</span>
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-teal">PySpark</span>
+          <span class="tag tag-teal">Medallion architecture</span>
+          <span class="tag tag-teal">Delta tables</span>
+          <span class="tag tag-amber">Open government data</span>
+          <span class="tag tag-amber">Local government analytics</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="psah-dashboard.pdf" download>Download Report (PDF) →</a>
+          <a class="project-link" href="https://github.com/public-services-analytics-hub/la-performance-analytics" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+
+
+      <!-- Wandsworth LBC Performance Dashboard -->
       <div class="project-card featured">
         <span class="status-badge status-live">Live</span>
         <div class="project-card-top">
@@ -500,6 +458,30 @@
         </div>
         <div class="project-links">
           <a class="project-link" href="fabric-dashboard.html">View project &rarr;</a>
+        </div>
+      </div>
+
+
+      <!-- fabric-local-gov-starter -->
+      <div class="project-card featured">
+        <span class="status-badge status-live">Live</span>
+        <div class="project-card-top">
+          <h3>Microsoft Fabric Local Government Starter: Reusable Analytics Template</h3>
+          <span class="project-date">2026</span>
+        </div>
+        <p>Open-source starter template enabling any UK local authority to deploy a full medallion architecture analytics pipeline against their own DLUHC Revenue Outturn RS data. Packages a parameterised PySpark ETL notebook, star schema semantic model with DAX measures, and a four-page Power BI report template. Any council can clone the repo, update three configuration parameters, and run the pipeline end to end without writing code from scratch.</p>
+        <div class="tag-row">
+          <span class="tag tag-blue">Microsoft Fabric</span>
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-blue">DAX</span>
+          <span class="tag tag-teal">PySpark</span>
+          <span class="tag tag-teal">Delta tables</span>
+          <span class="tag tag-teal">Open source</span>
+          <span class="tag tag-amber">Local government</span>
+          <span class="tag tag-amber">DLUHC open data</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/public-services-analytics-hub/fabric-local-gov-starter" target="_blank">View on GitHub →</a>
         </div>
       </div>
 
@@ -528,6 +510,7 @@
         </div>
       </div>
 
+
       <!-- Health Determinants Dashboard -->
       <div class="project-card featured">
         <span class="status-badge status-live">Live</span>
@@ -551,6 +534,31 @@
         </div>
       </div>
 
+
+      <!-- Love Island -->
+      <div class="project-card featured">
+        <span class="status-badge status-live">Live</span>
+        <div class="project-card-top">
+          <h3>Love Island UK 2022: Twitter Sentiment &amp; NLP Analysis</h3>
+          <span class="project-date">Jan 2023</span>
+        </div>
+        <p>End-to-end NLP and sentiment analysis of 200,000 tweets scraped during the 2022 Love Island UK season using Python's snscrape library and the Twitter API. Applied a full preprocessing pipeline: tokenisation, stop word removal, lemmatisation, and regex hashtag extraction: before classifying tweet sentiment using TextBlob polarity scoring. Found that 69.44% of tweets were positive about the show, and that the most-tweeted couple did not win: suggesting Twitter engagement does not correlate with viewer votes. Visualised findings in Power BI covering sentiment distribution, hashtag frequency by couple, and geographic spread across 8 countries.</p>
+        <div class="tag-row">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-purple">NLP</span>
+          <span class="tag tag-purple">TextBlob</span>
+          <span class="tag tag-purple">NLTK</span>
+          <span class="tag tag-purple">snscrape</span>
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-teal">200,000 records</span>
+          <span class="tag tag-teal">Sentiment analysis</span>
+        </div>
+        <div class="project-links">
+          <a class="project-link" href="https://medium.com/@dorcas.ainaa/love-island-uk-2022-an-analysis-of-twitters-perception-on-the-dating-show-a7e7e38d6e88" target="_blank">Read on Medium →</a>
+        </div>
+      </div>
+
+
       <!-- Excel MI Report -->
       <div class="project-card featured">
         <span class="status-badge status-live">Live</span>
@@ -573,6 +581,7 @@
         </div>
       </div>
 
+
       <!-- Covid SQL -->
       <div class="project-card">
         <span class="status-badge status-live">Live</span>
@@ -593,6 +602,7 @@
           <a class="project-link" href="https://public.tableau.com/app/profile/dorcas.aina" target="_blank">View Tableau →</a>
         </div>
       </div>
+
 
       <!-- Nashville SQL -->
       <div class="project-card">
